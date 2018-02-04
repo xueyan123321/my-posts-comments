@@ -1,0 +1,34 @@
+.radio-container{
+  margin-left:10px;
+  margin-top:10px;
+}
+
+.list-container{
+  width:80%;
+  margin-left:10%;
+}
+
+.vote-container{
+  margin-right:15px;
+}
+
+.vote{
+  margin-right:5px;
+}
+
+.time{
+  margin-right: 10px;
+}
+
+.button-container{
+  margin-left: 10px;
+  margin-top: 2%;
+}
+
+.vote-button, .time-button{
+  margin-left:5px ;
+}
+
+.create{
+  margin-left:80%;
+}

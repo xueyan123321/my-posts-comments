@@ -1,0 +1,30 @@
+.post-detail-header{
+    width:60%;
+    margin-left: 5%;
+    margin-top:2%;
+}
+
+.post-comments{
+    margin-left: 5%;
+}
+
+.author{
+    margin-right:5%;
+}
+
+.time{
+    margin-right:5%;
+}
+
+.vote{
+    margin-right: 5%;
+}
+
+.like{
+    margin-left:5px;
+    margin-right:5px;
+}
+
+.delete-button{
+    margin-left:5px;
+}

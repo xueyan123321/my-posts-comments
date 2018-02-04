@@ -1,0 +1,83 @@
+import React, { Component } from 'react'
+import { Card, List, Icon } from 'antd'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { fetchPostDetail, fetchPostComments, mutatePostVotes, mutateCommentVotes} from "./action";
+import './postDetail.css'
+
+
+class PostDetail extends Component{
+    componentDidMount(){
+        const { params } = this.props.match
+        this.props.receivePostDetail(params.id)
+        this.props.receivePostComments(params.id)
+    }
+    render(){
+        const { body,id,title,author, timestamp, voteScore, commentCount } = this.props.postDetails
+        const { postComments, mutatePostVotes, match, mutateCommentVotes } = this.props
+        return (
+            <div>
+                <div className="post-detail-header" >
+                    <Card
+                        title={title}
+                        extra={<div>
+                            <Link to={`/createEditPost/${match.params.id}`}>Edit</Link>
+                            <a className="delete-button">Delete</a>
+                        </div>}>
+                        <p>{body}</p>
+                        <p>
+                            <span className="author">Author: {author}</span>
+                            <span className="time">Time: {new Date(timestamp).toUTCString()}</span>
+                            <span className= "vote">VoteScore:{voteScore}<Icon type="like"  className="like" onClick={() => {
+                                mutatePostVotes(id, 'upVote')
+                            }}/><Icon type="dislike" className="dislike" onClick={() => {
+                                mutatePostVotes(id, 'downVote')
+                            }}/></span>
+                            <span>commentCount: {commentCount}</span>
+                        </p>
+                    </Card>
+                </div>
+                <div className="post-comments">
+                    <List
+                        header={<h3>Comments</h3>}
+                        dataSource={postComments}
+                        itemLayout = "horizontal"
+                        bordered
+                        renderItem={item => ( <List.Item extra={<div>
+                                voteScore:{item.voteScore}
+                                <span className= "vote">
+                                    <Icon type="like"  className="like" onClick={() => {
+                                    // mutatePostVotes(id, 'upVote')
+                                        mutateCommentVotes(item.id, 'upVote')
+                                    }}/>
+                                    <Icon type="dislike" className="dislike" onClick={() => {
+                                    // mutatePostVotes(id, 'downVote')
+                                        mutateCommentVotes(item.id, 'downVote')
+                                    }}/>
+                                </span>
+                            </div>}>{item.body}</List.Item> )}
+                    >
+                    </List>
+                </div>
+            </div>
+        )
+    }
+}
+
+const mapStateToProps = ({postDetails, postComments}) => (
+    {
+        postDetails,
+        postComments
+    }
+)
+
+const mapDispatchToProps = dispatch => (
+    {
+        receivePostDetail:(id) => dispatch(fetchPostDetail(id)),
+        receivePostComments: (id) => dispatch(fetchPostComments(id)),
+        mutatePostVotes: (id, method) => dispatch(mutatePostVotes(id, method)),
+        mutateCommentVotes: (id, method) => dispatch(mutateCommentVotes(id, method))
+    }
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetail)
