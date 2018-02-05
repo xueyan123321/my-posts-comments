@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Input, DatePicker, Select, Button } from 'antd'
+import { Form, Input, DatePicker, Select, Button} from 'antd'
 import { connect } from 'react-redux'
 import { fetchPostDetail } from "../postDetail/action";
 import "./createEditPost.css"

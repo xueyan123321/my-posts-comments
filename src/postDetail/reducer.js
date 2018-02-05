@@ -17,8 +17,14 @@ export function postComments(state=[], action){
     switch (type){
         case GET_POST_COMMENTS:
             return postComments
-        // case CHANGE_COMMENT_VOTE:
-        //     return Array.from(new Set([...state, comment]))
+        case CHANGE_COMMENT_VOTES:
+            let copyStateChange = [...state]
+            copyStateChange.forEach(item=> {
+                if(item.id === comment.id){
+                    item.voteScore = comment.voteScore
+                }
+            })
+            return copyStateChange
         default:
             return state
     }

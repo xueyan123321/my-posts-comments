@@ -13,15 +13,24 @@ export function categories(state = [], action){
 }
 
 export function posts(state=[], action){
-    const {type, posts, method} = action
+    const {type, posts, method, changedPost} = action
     switch(type){
         case GET_POSTS:
             return posts
         case SORT_POSTS:
-            state.sort((pre ,next) => {
+            let copyStateSort = [...state]
+            copyStateSort.sort((pre ,next) => {
                 return pre[method] - next[method]
             })
-            return [...state]
+            return copyStateSort
+        case CHANGE_POST_VOTES:
+            let copyStateChange = [...state]
+            copyStateChange.forEach(item => {
+                if(item.id === changedPost.id){
+                    item.voteScore = changedPost.voteScore
+                }
+            })
+            return copyStateChange
         default:
             return state
     }
