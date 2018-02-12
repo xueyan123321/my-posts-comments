@@ -32,7 +32,13 @@ class MainPage extends Component{
                     header={<div>Posts</div>}
                     dataSource={posts.filter((post) => post.deleted === false)}
                     renderItem={item => (<List.Item><List.Item.Meta title={item.title}
-                                                                    description={item.body}></List.Item.Meta>
+                                                                    description={
+                                                                        <div>
+                                                                            <p>{item.body}</p>
+                                                                            <span>-{item.author}</span>
+                                                                        </div>
+                                                                    }></List.Item.Meta>
+                        <div className="comments-number">comment number: {item.commentCount}</div>
                         <div className='vote-container'>
                             <span className='vote'>vote:</span>{item.voteScore}
                             <Icon type="like"  className="like" onClick={() => {

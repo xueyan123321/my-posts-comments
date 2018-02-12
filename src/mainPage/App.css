@@ -10,7 +10,7 @@
 
 .vote-container{
   width: 90px;
-  margin-right:15px;
+  margin-right:10px;
 }
 
 .time-container{
@@ -36,4 +36,8 @@
 
 .create{
   margin-left:80%;
+}
+
+.comments-number{
+  margin-right: 10px;
 }
