@@ -30,7 +30,7 @@ class MainPage extends Component{
                 <List
                     size="large"
                     header={<div>Posts</div>}
-                    dataSource={posts}
+                    dataSource={posts.filter((post) => post.deleted === false)}
                     renderItem={item => (<List.Item><List.Item.Meta title={item.title}
                                                                     description={item.body}></List.Item.Meta>
                         <div className='vote-container'>

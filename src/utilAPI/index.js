@@ -86,7 +86,7 @@ export const createPost = (title, body, author, category) => fetch(`${mainUrl}/p
 }).then(res => res.json())
     .catch(err => alert(err.message))
 
-export const editPost = (id, title, body) => fetch(`${mainUrl}/posts/${id}`, {
+export const editPost = (id, title, body, author, category) => fetch(`${mainUrl}/posts/${id}`, {
     method: 'PUT',
     headers:{
         'Authorization': 'whatever-you-want',
@@ -94,7 +94,61 @@ export const editPost = (id, title, body) => fetch(`${mainUrl}/posts/${id}`, {
     },
     body: JSON.stringify({
         title,
+        body,
+        author,
+        category
+    })
+}).then(res => res.json())
+    .catch(err => alert(err.message))
+
+export const deletePost = (id) => fetch(`${mainUrl}/posts/${id}`, {
+    method: 'DELETE',
+    headers:{
+        'Authorization': 'whatever-you-want',
+        'Content-Type': 'application/json'
+    }
+}).then(res => res.json())
+    .catch(err => alert(err.message))
+
+export const createComment = (body, author, parentId) => fetch(`${mainUrl}/comments`, {
+    method: 'POST',
+    headers:{
+        'Authorization': 'whatever-you-want',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        id: Date.now(),
+        body,
+        author,
+        parentId,
+        timestamp:Date.now()
+    })
+}).then(res => res.json())
+    .catch(err => alert(err.message))
+
+export const editComment = (body, id) => fetch(`${mainUrl}/comments/${id}`,{
+    method:'PUT',
+    headers:{
+        'Authorization': 'whatever-you-want',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        timestamp: Date.now(),
         body
     })
 }).then(res => res.json())
+    .catch(err => alert(err.message))
+
+export const deleteComment = (id) => fetch(`${mainUrl}/comments/${id}`, {
+    method: 'DELETE',
+    headers:{
+        'Authorization': 'whatever-you-want',
+        'Content-Type': 'application/json'
+    },
+    body:JSON.stringify({
+        deleted: true
+    })
+}).then(res => {
+    return res.json()
+})
     .catch(err => alert(err.message))

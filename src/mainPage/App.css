@@ -9,7 +9,12 @@
 }
 
 .vote-container{
+  width: 90px;
   margin-right:15px;
+}
+
+.time-container{
+  width: 200px;
 }
 
 .vote{

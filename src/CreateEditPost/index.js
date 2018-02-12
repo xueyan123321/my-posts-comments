@@ -30,10 +30,12 @@ class CreateEditPost extends Component{
         this.props.form.validateFields((err, values) => {
             const {title, body, author, category} = values
             if(!err && this.props.match.params.id){
-                fetchUrl.editPost(this.props.match.params.id, title, body).then(res => console.log('resEdit', res))
+                fetchUrl.editPost(this.props.match.params.id, title, body, author, category
+                ).then(res => console.log('resEdit', res))
+                this.props.history.push('/')
             } else if(!err){
                 fetchUrl.createPost(title,body, author, category).then(res => console.log('res', res))
-                debugger
+                this.props.history.push('/')
             }
         })
     }

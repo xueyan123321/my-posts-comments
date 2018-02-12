@@ -28,3 +28,12 @@
 .delete-button{
     margin-left:5px;
 }
+
+.comment-body{
+    width:600px;
+    margin-right:300px;
+}
+
+.comment-vote{
+    width:150px;
+}

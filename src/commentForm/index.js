@@ -3,17 +3,25 @@ import { Modal, Form, Input } from 'antd'
 
 const FormItem = Form.Item
 
-export const CommentForm = Form.create()(
+export const CommentForm = Form.create({
+    mapPropsToFields:(props) => {
+        const { commentDetails } = props
+        return {
+            body: Form.createFormField({value: commentDetails.body}),
+            author: Form.createFormField({value:commentDetails.author})
+        }
+    }
+})(
     (props) => {
-        const { visible, onCancel, onCreate, form } = props;
+        const { visible, onCancel, onCreateOrEdit, form, commentDetails} = props;
         const { getFieldDecorator } = form
         return (
             <Modal
                 visible={visible}
-                title="Create a new comment"
-                okText = "Create"
+                title="Create or Edit a comment"
+                okText = "Submit"
                 onCancel={onCancel}
-                onOk={onCreate}
+                onOk={() => onCreateOrEdit(commentDetails.id)}
             >
                 <Form layout="vertical">
                     <FormItem label="body">
