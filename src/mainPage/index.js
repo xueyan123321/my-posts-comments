@@ -20,6 +20,7 @@ class MainPage extends Component{
                     <div className="radio-container">
                         <RadioGroup onChange={(e) => {
                             fetchPosts(e.target.value)
+                            this.props.history.push(`/${e.target.value}`)
                         }}>
                             {categories && (categories.map(category => <RadioButton key={category.name}
                                                                      value={category.path}>{category.name}</RadioButton>))}
@@ -54,7 +55,7 @@ class MainPage extends Component{
                         <div className='time-container'>
                             <span className='time'>time:</span>{new Date(item.timestamp).toISOString().replace('T', ' ').slice(0, -5)}
                         </div>
-                        <Link to={`/posts/${item.id}`}>The detail</Link>
+                        <Link to={`/${item.category}/${item.id}`}>The detail</Link>
                         </List.Item>)}
                         >
                 </List>
@@ -72,7 +73,7 @@ class MainPage extends Component{
                         }}>time</Button>
                     </span>
                     <span className='create'>
-                        <Link to="/createEditPost/"><Button  type='primary' size='small' icon='plus'>create</Button></Link>
+                        <Link to="/createEditPost/"><Button  type='danger' size='small' icon='plus'>Create new post!</Button></Link>
                     </span>
                 </span>
             </div>

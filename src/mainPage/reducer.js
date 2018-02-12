@@ -1,5 +1,5 @@
 import { GET_CATEGORIES, GET_POSTS, SORT_POSTS } from "./action";
-import {CHANGE_POST_VOTES} from "../postDetail/action";
+import {CHANGE_POST_VOTES, DELETE_POST} from "../postDetail/action";
 
 
 export function categories(state = [], action){
@@ -13,7 +13,7 @@ export function categories(state = [], action){
 }
 
 export function posts(state=[], action){
-    const {type, posts, method, changedPost} = action
+    const {type, posts, method, changedPost, deletedPost} = action
     switch(type){
         case GET_POSTS:
             return posts
@@ -31,6 +31,8 @@ export function posts(state=[], action){
                 }
             })
             return copyStateChange
+        case DELETE_POST:
+            return state.filter(item => item.id !== deletedPost.id)
         default:
             return state
     }

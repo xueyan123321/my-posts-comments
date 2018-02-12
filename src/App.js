@@ -9,46 +9,13 @@ import PostDetail from './postDetail/index'
 
 
 class App extends Component {
-    componentDidMount() {
-        /**
-         * @description get all the categories
-         */
-
-        /**
-         * @description get all the posts
-         */
-    }
-    // onChange(e) {
-    //     console.log(`radio checked: ${e.target.value}`)
-    //     if(e.target.value === 'all'){
-    //         fetch(`${mainUrl}/posts`,{
-    //             headers: {
-    //                 Authorization: 'whatever-you-want'
-    //             }
-    //         })
-    //             .then(res => res.json())
-    //             .then(res => this.setState({
-    //                 posts:res
-    //             }))
-    //     } else{
-    //         fetch(`${mainUrl}/${e.target.value}/posts`,{
-    //             headers: {
-    //                 Authorization: 'whatever-you-want'
-    //             }
-    //         })
-    //             .then(res => res.json())
-    //             .then(res => this.setState({
-    //                 posts:res
-    //             }))
-    //     }
-    // }
     render() {
         return (
             <div className="App">
                 <Switch>
-                    <Route path="/" exact component={MainPage}></Route>
                     <Route path="/createEditPost/:id?" component={CreateEditPost}></Route>
-                    <Route path="/posts/:id" component={PostDetail}></Route>
+                    <Route path="/:category/:id" component={PostDetail}></Route>
+                    <Route path="/:category?" component={MainPage}></Route>
                     <Route component={NoMatch}></Route>
                 </Switch>
             </div>

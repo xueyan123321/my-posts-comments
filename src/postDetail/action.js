@@ -25,9 +25,9 @@ export const changePostVotes = (changedPost) => ({
     changedPost
 })
 
-export const deletePost = (result) => ({
+export const deletePost = (deletedPost) => ({
     type: DELETE_POST,
-    result
+    deletedPost
 })
 
 export const changeCommentVotes = (comment) => ({
