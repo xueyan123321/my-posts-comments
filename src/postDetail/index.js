@@ -58,7 +58,7 @@ class PostDetail extends Component{
                     <Card
                         title={title}
                         extra={<div>
-                            <Link to={`/createEditPost/${match.params.id}`}>Edit</Link>
+                            <Link to={`/createEditPost/${match.params.id}`} className="edit">Edit</Link>
                             <Popconfirm title="Are you sure?" okText="Yes" cancelText="No" onConfirm={() => {
                                 deletePost(match.params.id)
                                 history.push('/')

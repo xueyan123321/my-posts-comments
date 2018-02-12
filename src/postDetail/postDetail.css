@@ -37,3 +37,8 @@
 .comment-vote{
     width:150px;
 }
+
+.edit{
+    display:inline-block;
+    margin-right:10px;
+}
