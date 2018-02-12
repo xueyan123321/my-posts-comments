@@ -138,7 +138,7 @@ class PostDetail extends Component{
                         commentDetails = {this.state.commentDetails}
                     >
                     </CommentForm>
-                    <Button type="primary" onClick={() => {
+                    <Button type="primary" className="create-button" onClick={() => {
                         this.setState({
                             visible:true,
                             commentDetails:{
