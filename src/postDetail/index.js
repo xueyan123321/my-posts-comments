@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { Card, List, Icon, Modal, Button, Form, Popconfirm} from 'antd'
+import { Card, List, Icon, Button, Popconfirm} from 'antd'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchPostDetail, fetchPostComments, deletePostRequest, mutatePostVotes, mutateCommentVotes, postComment, requestEditComment, requestDeleteComment} from "./action";
 import './postDetail.css'
 import { CommentForm } from "../commentForm/index";
 
-const FormItem = Form.Item
 
 class PostDetail extends Component{
     state = {

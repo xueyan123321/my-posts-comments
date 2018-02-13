@@ -14,7 +14,7 @@ class MainPage extends Component{
         this.props.fetchPosts()
     }
     render(){
-        const { categories, posts, fetchCategories, fetchPosts, sortPosts, mutatePostVotes } = this.props
+        const { categories, posts, fetchPosts, sortPosts, mutatePostVotes } = this.props
         console.log('posts', posts)
         return <div className="main-page">
                     <div className="radio-container">

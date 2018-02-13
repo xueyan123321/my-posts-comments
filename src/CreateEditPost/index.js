@@ -41,7 +41,6 @@ class CreateEditPost extends Component{
     }
     render(){
         const { getFieldDecorator } = this.props.form;
-        const { title } = this.props.postDetails
         const config = {
           rules: [{
               type: 'object',

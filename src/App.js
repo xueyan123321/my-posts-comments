@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { mainUrl } from "./globalConfig";
 import { Route, Switch } from 'react-router-dom';
 import './mainPage/App.css';
 import MainPage from './mainPage/index'
