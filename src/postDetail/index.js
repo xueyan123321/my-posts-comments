@@ -62,7 +62,7 @@ class PostDetail extends Component{
                                 deletePost(match.params.id)
                                 history.push('/')
                             }}>
-                                <a href="#">Delete</a>
+                                <a>Delete</a>
                             </Popconfirm>
                         </div>}>
                         <p>{body}</p>
@@ -114,21 +114,6 @@ class PostDetail extends Component{
                             </List.Item> )}
                     >
                     </List>
-                    {/*<Modal*/}
-                        {/*title="Comment Dialogue"*/}
-                        {/*visible={this.state.visible}*/}
-                        {/*onCancel= {() => {*/}
-                            {/*this.setState({*/}
-                                {/*visible:false*/}
-                            {/*})*/}
-                        {/*}}*/}
-                    {/*>*/}
-                        {/*<Form layout="vertical">*/}
-                            {/*<FormItem label="body">*/}
-                                {/*{}*/}
-                            {/*</FormItem>*/}
-                        {/*</Form>*/}
-                    {/*</Modal>*/}
                     <CommentForm
                         ref={this.saveFormRef}
                         visible={this.state.visible}
