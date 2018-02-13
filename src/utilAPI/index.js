@@ -1,5 +1,5 @@
 import { mainUrl } from "../globalConfig";
-
+import uuid from 'uuid'
 export const fetchCategories = () => fetch(`${mainUrl}/categories`,{
     headers: {
         Authorization: 'whatever-you-want'
@@ -76,7 +76,7 @@ export const createPost = (title, body, author, category) => fetch(`${mainUrl}/p
         'Content-Type': 'application/json'
     },
     body:JSON.stringify({
-        id: Date.now(),
+        id: uuid(),
         title,
         body,
         timestamp: Date.now(),
@@ -117,7 +117,7 @@ export const createComment = (body, author, parentId) => fetch(`${mainUrl}/comme
         'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-        id: Date.now(),
+        id: uuid(),
         body,
         author,
         parentId,
