@@ -101,7 +101,7 @@ class CreateEditPost extends Component{
                         label="Time"
                     >
                         {getFieldDecorator('dateTimePicker', config)(
-                            <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
+                            <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" disabled/>
                         )}
                     </FormItem>
                     <FormItem

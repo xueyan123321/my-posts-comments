@@ -56,7 +56,7 @@ class MainPage extends Component{
                             }}/>
                         </div>
                         <div className='time-container'>
-                            <span className='time'>time:</span>{new Date(item.timestamp).toISOString().replace('T', ' ').slice(0, -5)}
+                            <span className='time'>time:</span>{new Date(item.timestamp).toLocaleString()}
                         </div>
                         <Link to={`/${item.category}/${item.id}`}>The detail</Link>
                         </List.Item>)}

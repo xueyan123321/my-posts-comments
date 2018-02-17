@@ -95,6 +95,7 @@ export const editPost = (id, title, body, author, category) => fetch(`${mainUrl}
     body: JSON.stringify({
         title,
         body,
+        timestamp: Date.now(),
         author,
         category
     })
