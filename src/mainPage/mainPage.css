@@ -9,12 +9,12 @@
 }
 
 .vote-container{
-  width: 90px;
+  width: 100px;
   margin-right:10px;
 }
 
 .time-container{
-  width: 200px;
+  width: 300px;
 }
 
 .vote{
@@ -28,6 +28,7 @@
 .button-container{
   margin-left: 10px;
   margin-top: 2%;
+  margin-bottom: 3%;
 }
 
 .vote-button, .time-button{
@@ -35,7 +36,7 @@
 }
 
 .create{
-  margin-left:80%;
+  margin-left:60%;
 }
 
 .comments-number{

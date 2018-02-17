@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import './mainPage/App.css';
+import './mainPage/mainPage.css';
 import MainPage from './mainPage/index'
 import CreateEditPost from './CreateEditPost/index'
 import NoMatch from './noMatch/index'
