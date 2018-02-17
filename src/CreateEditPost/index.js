@@ -25,6 +25,11 @@ class CreateEditPost extends Component{
             })
         }
     }
+
+    /**
+     * @description handle the submit of the create or edit post.If it doesn't have an match.prams.id, it will create a new post.
+     * @param e
+     */
     handleSubmit=(e) => {
         e.preventDefault()
         this.props.form.validateFields((err, values) => {

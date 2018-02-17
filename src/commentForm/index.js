@@ -2,7 +2,9 @@ import React from 'react'
 import { Modal, Form, Input } from 'antd'
 
 const FormItem = Form.Item
-
+/**
+ * @description: Form component is from library Ant Design Form
+ */
 export const CommentForm = Form.create({
     mapPropsToFields:(props) => {
         const { commentDetails } = props

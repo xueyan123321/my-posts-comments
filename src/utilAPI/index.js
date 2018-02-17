@@ -126,7 +126,7 @@ export const createComment = (body, author, parentId) => fetch(`${mainUrl}/comme
 }).then(res => res.json())
     .catch(err => alert(err.message))
 
-export const editComment = (body, id) => fetch(`${mainUrl}/comments/${id}`,{
+export const editComment = (body, author,id) => fetch(`${mainUrl}/comments/${id}`,{
     method:'PUT',
     headers:{
         'Authorization': 'whatever-you-want',
@@ -134,7 +134,8 @@ export const editComment = (body, id) => fetch(`${mainUrl}/comments/${id}`,{
     },
     body: JSON.stringify({
         timestamp: Date.now(),
-        body
+        body,
+        author
     })
 }).then(res => res.json())
     .catch(err => alert(err.message))

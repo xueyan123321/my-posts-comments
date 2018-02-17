@@ -22,8 +22,11 @@ class PostDetail extends Component{
             visible:false
         })
     }
+    /**
+     * @description when don't provide the commentId, it creates a new comment, otherwise, it edits existing post.
+     * @param commentId
+     */
     handleCreateOrEdit = (commentId = '') => {
-        console.log('comment', commentId)
         const form = this.form;
         const { postComment, match, editComment } = this.props
         form.validateFields((err, values) => {
@@ -31,14 +34,13 @@ class PostDetail extends Component{
                 return
             }
 
-            console.log('Received values of form:', values)
             const {body, author} = values
             if(!commentId){
                 postComment(body, author, match.params.id)
                 form.resetFields();
 
             } else {
-                editComment(body, commentId)
+                editComment(body, author, commentId)
             }
             this.setState({
                 visible:false
@@ -152,7 +154,7 @@ const mapDispatchToProps = dispatch => (
         mutatePostVotes: (id, method) => dispatch(mutatePostVotes(id, method)),
         mutateCommentVotes: (id, method) => dispatch(mutateCommentVotes(id, method)),
         postComment: (body, author, parentId) => dispatch(postComment(body, author, parentId)),
-        editComment: (body, id) => dispatch(requestEditComment(body, id)),
+        editComment: (body, author, id) => dispatch(requestEditComment(body, author, id)),
         deletedComment:(id) => dispatch(requestDeleteComment(id))
     }
 )

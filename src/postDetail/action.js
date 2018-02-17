@@ -63,6 +63,6 @@ export const mutateCommentVotes = (id, method) => dispatch => fetchUtil.changeCo
 
 export const postComment = (body, author, parentId) => dispatch => fetchUtil.createComment(body, author, parentId).then(res => dispatch(createComment(res)))
 
-export const requestEditComment = (body, id) => dispatch => fetchUtil.editComment(body, id).then(res => dispatch(editComment(res)))
+export const requestEditComment = (body,author,id) => dispatch => fetchUtil.editComment(body,author,id).then(res => dispatch(editComment(res)))
 
 export const requestDeleteComment = id => dispatch => fetchUtil.deleteComment(id).then(res => dispatch(deleteComment(res)))
