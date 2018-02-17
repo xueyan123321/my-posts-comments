@@ -136,8 +136,10 @@ class CreateEditPost extends Component{
                             </Select>
                         )}
                     </FormItem>
-                    <Button type="primary" htmlType="submit">submit</Button>
-                    <Link to='/'>haha</Link>
+                    <Button type="primary" className="cancel-button" onClick={()=> {
+                        this.props.history.push('/')
+                    }}>Cancel</Button>
+                    <Button type="primary" htmlType="submit" className="submit-button">submit</Button>
                 </Form>
         )
     }

@@ -20,7 +20,8 @@ my-posts-comments
 ├── node_modules
 ├── package.json
 ├── .gitignore
-├── App.js. This file includes the router information.
+├── App.js. This file includes the router information
+├── rootReducer.js This file composes categories, posts, postDetails, postComments, reducers together..
 └── src
     └── App.css
     └── commentForm. This file is about Create/Edit form

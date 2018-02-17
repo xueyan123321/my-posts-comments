@@ -39,6 +39,7 @@ export function postComments(state=[], action){
             copyStateEdit.forEach(item => {
                 if(item.id === editComment.id){
                     item.body = editComment.body
+                    item.author = editComment.author
                     item.timestamp = editComment.timestamp
                 }
             })

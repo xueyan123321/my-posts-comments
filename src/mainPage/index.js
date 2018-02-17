@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchCategories, fetchPosts, sortPosts } from "./action";
-import { mutatePostVotes } from "../postDetail/action";
-import { List, Radio, Button, Icon } from 'antd';
+import { mutatePostVotes, deletePostRequest} from "../postDetail/action";
+import { List, Radio, Button, Icon, Popconfirm } from 'antd';
 import { Link } from 'react-router-dom'
 import './App.css'
 const RadioButton = Radio.Button;
@@ -14,8 +14,7 @@ class MainPage extends Component{
         this.props.fetchPosts()
     }
     render(){
-        const { categories, posts, fetchPosts, sortPosts, mutatePostVotes } = this.props
-        console.log('posts', posts)
+        const { categories, posts, fetchPosts, sortPosts, mutatePostVotes, deletePost, history } = this.props
         return <div className="main-page">
                     <div className="radio-container">
                         <RadioGroup onChange={(e) => {
@@ -32,23 +31,27 @@ class MainPage extends Component{
                     size="large"
                     header={<div>Posts</div>}
                     dataSource={posts.filter((post) => post.deleted === false)}
-                    renderItem={item => (<List.Item><List.Item.Meta title={item.title}
-                                                                    description={
-                                                                        <div>
-                                                                            <p>{item.body}</p>
-                                                                            <span>-{item.author}</span>
-                                                                        </div>
-                                                                    }></List.Item.Meta>
+                    renderItem={item => (<List.Item actions={[<Link to={`/createEditPost/${item.id}`}>edit</Link>,
+                        <Popconfirm title="Are you sure?" okText="Yes" cancelText="No" onConfirm={() => {
+                            deletePost(item.id)
+                            history.push('/')
+                        }}>
+                            <a>Delete</a>
+                        </Popconfirm>
+                    ]}>
+                        <List.Item.Meta title={item.title} description={
+                            <div>
+                                <p>{item.body}</p>
+                                <span>-{item.author}</span>
+                            </div>
+                        }></List.Item.Meta>
                         <div className="comments-number">comment number: {item.commentCount}</div>
                         <div className='vote-container'>
                             <span className='vote'>vote:</span>{item.voteScore}
                             <Icon type="like"  className="like" onClick={() => {
-                                // mutatePostVotes(id, 'upVote')
-                                console.log('upVote', item.id)
                                 mutatePostVotes(item.id, 'upVote')
                             }}/>
                             <Icon type="dislike" className="dislike" onClick={() => {
-                                // mutatePostVotes(id, 'downVote')
                                 mutatePostVotes(item.id, 'downVote')
                             }}/>
                         </div>
@@ -92,7 +95,8 @@ const mapDispatchToProps = dispatch => ({
     fetchCategories:() => dispatch(fetchCategories()),
     fetchPosts:(category) => dispatch(fetchPosts(category)),
     sortPosts: (method) => dispatch(sortPosts(method)),
-    mutatePostVotes:(id, method) => dispatch(mutatePostVotes(id, method))
+    mutatePostVotes:(id, method) => dispatch(mutatePostVotes(id, method)),
+    deletePost:(id) => dispatch(deletePostRequest(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
