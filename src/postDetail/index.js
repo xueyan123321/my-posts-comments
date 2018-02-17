@@ -16,6 +16,12 @@ class PostDetail extends Component{
         const { params } = this.props.match
         this.props.receivePostDetail(params.id)
         this.props.receivePostComments(params.id)
+
+    }
+    componentWillReceiveProps(){
+        if(this.props.postDetails.error){
+            this.props.history.push('/404')
+        }
     }
     handleCancel = () => {
         this.setState({
@@ -99,7 +105,7 @@ class PostDetail extends Component{
                                 <a>delete</a>
                             </Popconfirm>
                         ]}>
-                            <div className="comment-body">{item.body}</div>
+                            <div className="comment-body">{item.body} -- {item.author}</div>
                             <div className="comment-vote">
                                 voteScore:{item.voteScore}
                                 <span className= "vote">

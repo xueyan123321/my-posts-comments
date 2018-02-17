@@ -14,7 +14,7 @@ class App extends Component {
                 <Switch>
                     <Route path="/createEditPost/:id?" component={CreateEditPost}></Route>
                     <Route path="/:category/:id" component={PostDetail}></Route>
-                    <Route path="/:category?" component={MainPage}></Route>
+                    <Route path="/:category([a-zA-Z]*)?" component={MainPage} exact></Route>
                     <Route component={NoMatch}></Route>
                 </Switch>
             </div>

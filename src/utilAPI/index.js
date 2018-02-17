@@ -22,6 +22,9 @@ export const fetchPostDetail = (id) => fetch(`${mainUrl}/posts/${id}`, {
         Authorization: 'whatever-you-want'
     }
 }).then(res => res.json())
+    .catch(err => {
+        alert(err.message)
+    })
 
 export const fetchPostComments = (id) => fetch(`${mainUrl}/posts/${id}/comments`, {
     headers:{
