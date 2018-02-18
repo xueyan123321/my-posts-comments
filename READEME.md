@@ -35,7 +35,7 @@ my-posts-comments
  
  ## Components information
  
- I use a lot of UI components from [Ant Design](https://ant.design/) 
+ I use a lot of UI components from [Ant Design](https://ant.design/). Whenever you see import ... from 'antd' , that's a component from Ant Design library.
  
 - [List](https://ant.design/components/list/)
 - [Radio](https://ant.design/components/radio/)
@@ -43,3 +43,5 @@ my-posts-comments
 - [Button](https://ant.design/components/button/)
 - [Popconfirm](https://ant.design/components/popconfirm/)
 - [Form](https://ant.design/components/form/)
+- [DatePicker](https://ant.design/components/date-picker/)
+- [Select](https://ant.design/components/select/)
