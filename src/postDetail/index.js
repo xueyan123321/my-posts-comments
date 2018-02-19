@@ -3,6 +3,7 @@ import { Card, List, Icon, Button, Popconfirm} from 'antd'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchPostDetail, fetchPostComments, deletePostRequest, mutatePostVotes, mutateCommentVotes, postComment, requestEditComment, requestDeleteComment} from "./action";
+import NoMatch from '../noMatch/index'
 import './postDetail.css'
 import { CommentForm } from "../commentForm/index";
 
@@ -17,11 +18,6 @@ class PostDetail extends Component{
         this.props.receivePostDetail(params.id)
         this.props.receivePostComments(params.id)
 
-    }
-    componentWillReceiveProps(){
-        if(this.props.postDetails.error){
-            this.props.history.push('/404')
-        }
     }
     handleCancel = () => {
         this.setState({
@@ -61,85 +57,89 @@ class PostDetail extends Component{
         const { postComments, mutatePostVotes, deletePost, match, mutateCommentVotes, history} = this.props
         return (
             <div>
-                <div className="post-detail-header" >
-                    <Card
-                        title={title}
-                        extra={<div>
-                            <Link to={`/createEditPost/${match.params.id}`} className="edit">Edit</Link>
-                            <Popconfirm title="Are you sure?" okText="Yes" cancelText="No" onConfirm={() => {
-                                deletePost(match.params.id)
-                                history.push('/')
-                            }}>
-                                <a>Delete</a>
-                            </Popconfirm>
-                        </div>}>
-                        <p>{body}</p>
-                        <p>
-                            <span className="author">Author: {author}</span>
-                            <span className="time">Time: {new Date(timestamp).toUTCString()}</span>
-                            <span className= "vote">VoteScore:{voteScore}<Icon type="like"  className="like" onClick={() => {
-                                mutatePostVotes(id, 'upVote')
-                            }}/><Icon type="dislike" className="dislike" onClick={() => {
-                                mutatePostVotes(id, 'downVote')
-                            }}/></span>
-                            <span>commentCount: {commentCount}</span>
-                        </p>
-                    </Card>
-                </div>
-                <div className="post-comments">
-                    <List
-                        header={<h3>Comments</h3>}
-                        dataSource={postComments.filter((postComment) => postComment.deleted === false && postComment.parentDeleted === false)}
-                        bordered
-                        renderItem={item => ( <List.Item actions={[<a onClick={() => {
-                            this.setState({
-                                visible: true,
-                                commentDetails: item
-                            })
-                        }}>edit</a> ,
-                            <Popconfirm title="Are you sure?" okText="Yes" cancelText="No" onConfirm={
-                                () => {
-                                    this.props.deletedComment(item.id)
-                                }
-                            }>
-                                <a>delete</a>
-                            </Popconfirm>
-                        ]}>
-                            <div className="comment-body">{item.body} -- {item.author}</div>
-                            <div className="comment-vote">
-                                voteScore:{item.voteScore}
-                                <span className= "vote">
-                                    <Icon type="like"  className="like" onClick={() => {
-                                        // mutatePostVotes(id, 'upVote')
-                                        mutateCommentVotes(item.id, 'upVote')
-                                    }}/>
-                                    <Icon type="dislike" className="dislike" onClick={() => {
-                                        // mutatePostVotes(id, 'downVote')
-                                        mutateCommentVotes(item.id, 'downVote')
-                                    }}/>
-                                </span>
-                            </div>
-                            </List.Item> )}
-                    >
-                    </List>
-                    <CommentForm
-                        ref={this.saveFormRef}
-                        visible={this.state.visible}
-                        onCancel = {this.handleCancel}
-                        onCreateOrEdit = {this.handleCreateOrEdit}
-                        commentDetails = {this.state.commentDetails}
-                    >
-                    </CommentForm>
-                    <Button type="primary" className="create-button" onClick={() => {
-                        this.setState({
-                            visible:true,
-                            commentDetails:{
-                                body:'',
-                                author:''
-                            }
-                        })
-                    }}>Create New Comment</Button>
-                </div>
+                {
+                    body === undefined?<NoMatch/>:<div>
+                        <div className="post-detail-header" >
+                            <Card
+                                title={title}
+                                extra={<div>
+                                    <Link to={`/createEditPost/${match.params.id}`} className="edit">Edit</Link>
+                                    <Popconfirm title="Are you sure?" okText="Yes" cancelText="No" onConfirm={() => {
+                                        deletePost(match.params.id)
+                                        history.push('/')
+                                    }}>
+                                        <a>Delete</a>
+                                    </Popconfirm>
+                                </div>}>
+                                <p>{body}</p>
+                                <p>
+                                    <span className="author">Author: {author}</span>
+                                    <span className="time">Time: {new Date(timestamp).toUTCString()}</span>
+                                    <span className= "vote">VoteScore:{voteScore}<Icon type="like"  className="like" onClick={() => {
+                                        mutatePostVotes(id, 'upVote')
+                                    }}/><Icon type="dislike" className="dislike" onClick={() => {
+                                        mutatePostVotes(id, 'downVote')
+                                    }}/></span>
+                                    <span>commentCount: {commentCount}</span>
+                                </p>
+                            </Card>
+                        </div>
+                        <div className="post-comments">
+                            <List
+                                header={<h3>Comments</h3>}
+                                dataSource={postComments.filter((postComment) => postComment.deleted === false && postComment.parentDeleted === false)}
+                                bordered
+                                renderItem={item => ( <List.Item actions={[<a onClick={() => {
+                                    this.setState({
+                                        visible: true,
+                                        commentDetails: item
+                                    })
+                                }}>edit</a> ,
+                                    <Popconfirm title="Are you sure?" okText="Yes" cancelText="No" onConfirm={
+                                        () => {
+                                            this.props.deletedComment(item.id)
+                                        }
+                                    }>
+                                        <a>delete</a>
+                                    </Popconfirm>
+                                ]}>
+                                    <div className="comment-body">{item.body} -- {item.author}</div>
+                                    <div className="comment-vote">
+                                        voteScore:{item.voteScore}
+                                        <span className= "vote">
+                                        <Icon type="like"  className="like" onClick={() => {
+                                            // mutatePostVotes(id, 'upVote')
+                                            mutateCommentVotes(item.id, 'upVote')
+                                        }}/>
+                                        <Icon type="dislike" className="dislike" onClick={() => {
+                                            // mutatePostVotes(id, 'downVote')
+                                            mutateCommentVotes(item.id, 'downVote')
+                                        }}/>
+                                    </span>
+                                    </div>
+                                </List.Item> )}
+                            >
+                            </List>
+                            <CommentForm
+                                ref={this.saveFormRef}
+                                visible={this.state.visible}
+                                onCancel = {this.handleCancel}
+                                onCreateOrEdit = {this.handleCreateOrEdit}
+                                commentDetails = {this.state.commentDetails}
+                            >
+                            </CommentForm>
+                            <Button type="primary" className="create-button" onClick={() => {
+                                this.setState({
+                                    visible:true,
+                                    commentDetails:{
+                                        body:'',
+                                        author:''
+                                    }
+                                })
+                            }}>Create New Comment</Button>
+                        </div>
+                    </div>
+                }
             </div>
         )
     }
