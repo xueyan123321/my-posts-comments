@@ -128,6 +128,11 @@ class PostDetail extends Component{
                                 commentDetails = {this.state.commentDetails}
                             >
                             </CommentForm>
+                            <Link to='/'>
+                                <Button type="primary">
+                                    <Icon type="left"/>Back to post list
+                                </Button>
+                            </Link>
                             <Button type="primary" className="create-button" onClick={() => {
                                 this.setState({
                                     visible:true,
