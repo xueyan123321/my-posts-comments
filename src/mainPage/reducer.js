@@ -1,5 +1,5 @@
-import { GET_CATEGORIES, GET_POSTS, SORT_POSTS } from "./action";
-import {CHANGE_POST_VOTES, DELETE_POST} from "../postDetail/action";
+import { GET_CATEGORIES, GET_POSTS, SORT_POSTS } from "./actionType";
+import {CHANGE_POST_VOTES, DELETE_POST} from "../postDetail/actionType";
 
 
 export function categories(state = [], action){

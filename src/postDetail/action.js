@@ -1,13 +1,6 @@
 import * as fetchUtil from '../utilAPI'
 
-export const GET_POST_DETAIL = 'GET_POST_DETAIL'
-export const CHANGE_POST_VOTES = 'CHANGE_POST_VOTES'
-export const DELETE_POST = 'DELETE_POST'
-export const GET_POST_COMMENTS = 'GET_POST_COMMENTS'
-export const CHANGE_COMMENT_VOTES = 'CHANGE_COMMENT_VOTES'
-export const CREATE_COMMENT = 'CREATE_COMMENT'
-export const EDIT_COMMENT = 'EDIT_COMMENT'
-export const DELETE_COMMENT = 'DELETE_COMMENT'
+import {GET_POST_DETAIL, GET_POST_COMMENTS, CHANGE_POST_VOTES, DELETE_POST, CHANGE_COMMENT_VOTES, CREATE_COMMENT, EDIT_COMMENT, DELETE_COMMENT} from "./actionType";
 
 
 export const receivePostDetail = (postDetails) => ({

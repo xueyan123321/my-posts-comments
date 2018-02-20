@@ -1,7 +1,7 @@
 import {
     GET_POST_DETAIL, GET_POST_COMMENTS, CHANGE_POST_VOTES, CHANGE_COMMENT_VOTES, CREATE_COMMENT, EDIT_COMMENT,
     DELETE_COMMENT
-} from "./action";
+} from "./actionType";
 
 export function postDetails(state={}, action){
     const { type, postDetails, changedPost} = action
