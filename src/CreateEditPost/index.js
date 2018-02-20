@@ -5,6 +5,7 @@ import { fetchPostDetail } from "../postDetail/action";
 import "./createEditPost.css"
 import moment from 'moment'
 import * as fetchUrl from '../utilAPI'
+import NoMatch from '../noMatch/index'
 
 const FormItem = Form.Item;
 const Option = Select.Option
@@ -45,6 +46,7 @@ class CreateEditPost extends Component{
     }
     render(){
         const { getFieldDecorator } = this.props.form;
+        const { postDetails } = this.props
         const config = {
           rules: [{
               type: 'object',
@@ -62,7 +64,8 @@ class CreateEditPost extends Component{
             }
         }
         return (
-                <Form className="post-form" onSubmit={this.handleSubmit}>
+            <div>
+                {(postDetails && (postDetails.error !== undefined) && (<NoMatch></NoMatch>))||(<Form className="post-form" onSubmit={this.handleSubmit}>
                     <FormItem
                         {...formItemLayout}
                         label="Title"
@@ -70,7 +73,7 @@ class CreateEditPost extends Component{
                         {getFieldDecorator('title', {
                             rules:[
                                 {
-                                  type:'string', message: 'The title must be a string', pattern: /[a-zA-Z\s]/
+                                    type:'string', message: 'The title must be a string', pattern: /[a-zA-Z\s]/
                                 },
                                 {
                                     required:true, message: 'please input the post title'
@@ -139,7 +142,9 @@ class CreateEditPost extends Component{
                         this.props.history.push('/')
                     }}>Cancel</Button>
                     <Button type="primary" htmlType="submit" className="submit-button">submit</Button>
-                </Form>
+                </Form>)}
+            </div>
+
         )
     }
 }
